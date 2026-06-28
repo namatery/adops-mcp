@@ -1,0 +1,32 @@
+# Sample rules to paste into your MCP client (Claude Desktop / Claude Code).
+# You type the plain-English sentence; Claude translates it into the typed RuleSet
+# and calls preview_rule. Nothing executes until you confirm with apply_rule.
+
+# 1. Kill wasteful spenders
+pause anything spending over $50 with no conversions in the last 48 hours
+  -> matches: Holiday Gift Guide - Desktop ($63.40, 0 conv), Cold Prospecting - Broad ($71.50, 0 conv)
+
+# 2. Scale the winners
+double the daily budget on any campaign with CPA under $20
+  -> matches the low-CPA campaigns (e.g. Retargeting - Warm Cart $7.33, Winter Sale - Mobile $14.00)
+
+# 3. Trim underperformers
+drop bids 15% on campaigns with CTR below 0.5%
+  -> matches low-CTR campaigns (e.g. Brand Awareness - Native, ctr ~0.32%)
+
+# 4. Combined example
+pause campaigns over $60 spend with zero conversions, and raise budget 50% on campaigns with CPA under $10
+
+# --- The equivalent typed RuleSet for rule #1 (what Claude emits under the hood) ---
+# {
+#   "description": "Kill wasteful spenders",
+#   "rules": [
+#     {
+#       "conditions": [
+#         {"field": "spend", "operator": ">", "value": 50, "lookback_hours": 48},
+#         {"field": "conversions", "operator": "==", "value": 0, "lookback_hours": 48}
+#       ],
+#       "action": {"type": "pause"}
+#     }
+#   ]
+# }
