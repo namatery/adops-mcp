@@ -1,21 +1,30 @@
-# Sample rules to paste into your MCP client (Claude Desktop / Claude Code).
-# You type the plain-English sentence; Claude translates it into the typed RuleSet
-# and calls preview_rule. Nothing executes until you confirm with apply_rule.
+# Sample media-buyer prompts to paste into your MCP client.
+# Claude Desktop, Claude Code, Codex, or another MCP client turns the prompt into
+# a typed RuleSet and calls preview_rule. Nothing executes until you confirm with
+# apply_rule.
 
-# 1. Kill wasteful spenders
-pause anything spending over $50 with no conversions in the last 48 hours
+# 1. Which campaigns should I pause today?
+preview: pause anything spending over $50 with no conversions in the last 48 hours
   -> matches: Holiday Gift Guide - Desktop ($63.40, 0 conv), Cold Prospecting - Broad ($71.50, 0 conv)
 
-# 2. Scale the winners
-double the daily budget on any campaign with CPA under $20
+# 2. Where am I wasting budget?
+show campaigns with spend over $50 and no conversions, then preview pausing them
+  -> useful for explaining why the campaigns match before any action is taken
+
+# 3. Scale the winners
+preview: double the daily budget on any campaign with CPA under $20
   -> matches the low-CPA campaigns (e.g. Retargeting - Warm Cart $7.33, Winter Sale - Mobile $14.00)
 
-# 3. Trim underperformers
-drop bids 15% on campaigns with CTR below 0.5%
+# 4. Trim underperformers
+preview: drop bids 15% on campaigns with CTR below 0.5%
   -> matches low-CTR campaigns (e.g. Brand Awareness - Native, ctr ~0.32%)
 
-# 4. Combined example
-pause campaigns over $60 spend with zero conversions, and raise budget 50% on campaigns with CPA under $10
+# 5. Generate an optimization plan
+preview: pause campaigns over $60 spend with zero conversions, and raise budget 50% on campaigns with CPA under $10
+
+# 6. Explain a performance change with available metrics
+compare campaign performance for this week and explain which campaigns are dragging efficiency down
+  -> calls get_performance_report; the current implementation exposes spend, impressions, clicks, conversions, CPA, CTR, and CPC
 
 # --- The equivalent typed RuleSet for rule #1 (what Claude emits under the hood) ---
 # {
