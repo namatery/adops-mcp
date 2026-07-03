@@ -7,6 +7,8 @@ after explicit confirmation.
 
 > **One line:** *Manage your ad campaigns by talking to them.*
 
+![adops-mcp demo walkthrough](demo.gif)
+
 ---
 
 ## The three questions
@@ -203,7 +205,7 @@ examples/              # demo.md walkthrough + sample_rules.txt
 
 ## Demo deliverable
 An MCP server has no public URL to share, so the demo is a **recorded walkthrough plus this runnable repo**
-(the contest explicitly allows this). The exact script is in [`examples/demo.md`](examples/demo.md).
+(the contest explicitly allows this).
 
 ## Status / honesty notes
 - The mock backend is the primary, fully-working demo surface.
