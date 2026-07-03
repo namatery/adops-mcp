@@ -12,10 +12,10 @@ from typing import Optional
 
 from mcp.server.fastmcp import FastMCP
 
-from . import safety
-from .backends.base import CampaignNotFound
-from .config import get_backend
-from .models import (
+from adops_mcp import safety
+from adops_mcp.backends.base import CampaignNotFound
+from adops_mcp.config import get_backend
+from adops_mcp.models import (
     ActionResult,
     ApplyResult,
     Campaign,
@@ -26,8 +26,8 @@ from .models import (
     RejectedAction,
     RulePreview,
 )
-from .rules.engine import evaluate
-from .rules.schema import ActionType, RuleSet
+from adops_mcp.rules.engine import evaluate
+from adops_mcp.rules.schema import ActionType, RuleSet
 
 mcp = FastMCP("adops")
 backend = get_backend()
