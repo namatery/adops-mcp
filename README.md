@@ -78,7 +78,7 @@ With [`uv`](https://docs.astral.sh/uv/) (recommended):
 ```bash
 git clone <this-repo> && cd adops-mcp
 uv sync                                   # install deps
-uv run pytest                             # 31 tests, fully offline
+uv run --extra dev pytest                 # 31 tests, fully offline
 uv run mcp dev src/adops_mcp/server.py    # launch + open the MCP Inspector
 ```
 
@@ -112,6 +112,24 @@ python -m adops_mcp            # runs the server over stdio
 
 ```bash
 claude mcp add adops -- uv run --directory "$(pwd)" python -m adops_mcp
+```
+
+**Codex** — from the repo root:
+
+```bash
+codex mcp add adops -- uv run --directory "$(pwd)" python -m adops_mcp
+```
+
+Then restart/open Codex in this repo and run `/mcp` to confirm that `adops` is connected.
+
+You can also configure it manually in `~/.codex/config.toml` or project-scoped `.codex/config.toml`:
+
+```toml
+[mcp_servers.adops]
+command = "uv"
+args = ["run", "--directory", "/absolute/path/to/adops-mcp", "python", "-m", "adops_mcp"]
+startup_timeout_sec = 20
+tool_timeout_sec = 60
 ```
 
 Then just talk to it: *"list my campaigns"*, *"preview: pause anything over $50 with no conversions"*,
